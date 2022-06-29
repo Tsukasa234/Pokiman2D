@@ -53,10 +53,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void LateUpdate()
+    {
+        anim.SetBool("isWalk", isMoving);
+    }
+
     IEnumerator MoveTowards(Vector3 Destination)
     {
         isMoving = true;
-        anim.SetBool("isWalk", isMoving);
         while (Vector3.Distance(transform.position, Destination) > Mathf.Epsilon)
         {
             transform.position = Vector3.MoveTowards(transform.position, Destination, speed * Time.deltaTime);
@@ -64,8 +68,10 @@ public class PlayerController : MonoBehaviour
         }
         transform.position = Destination;
         isMoving = false;
-        anim.SetBool("isWalk", isMoving);
+        CheckforPokemon();
     }
+
+
 
     /// <summary>
     /// Metodo para comprobar si el lugar es accesible o no
@@ -81,6 +87,17 @@ public class PlayerController : MonoBehaviour
         else
         {
             return true;
+        }
+    }
+
+    private void CheckforPokemon()
+    {
+        if (Physics2D.OverlapCircle(transform.position, 0.1f, pokemonLayer) != null)
+        {
+            if (Random.Range(0, 100) < 15)
+            {
+                Debug.Log("Un Pokemon Salvaje a aparecido");
+            }
         }
     }
 }
