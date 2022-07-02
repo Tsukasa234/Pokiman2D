@@ -312,6 +312,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -2404,6 +2405,103 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_37: 2013662301085042124
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_31: -9137242704690856261
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_70: 4864614173744119470
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_39: 4491468094804567208
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_9: 9207731987626331346
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_69: 1667852912257090422
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_14: 3294415652968268375
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_58: -3630751179048223678
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_74: 8006479749511775445
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_40: -5464131620660069399
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_11: -4852622217967342993
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_94: -374016609937341623
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_38: 2471391513621542264
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_49: 6486228361293398187
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_28: 4398863959246052939
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_48: 5911862933430196002
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_85: 3124296414419417788
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_78: 1166398605834025504
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_36: 3655719463870521199
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_2: -4191719261639081979
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_54: 3542279906209848169
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_1: 1373046355271075416
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_5: 8508443488470962147
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_67: -4315164331428966038
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_3: 231096290548056189
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_26: -9129284303646178470
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_33: 9093168942249257384
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_52: 7288365604840849518
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_81: 2676274684021216687
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_19: -189461991007263223
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_72: 5024335390947362596
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_7: -489328585611628250
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_25: 8729629559041735334
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_50: 6267649279070243045
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_12: -2297931972866881769
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_20: -5029279052270824128
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_8: 5163445813006950392
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_22: -2119294848323148343
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_66: 8077209447634866627
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_13: 4223353220148839166
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_32: 1359239795443055451
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_15: -5298428496654107301
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_51: -6214503329114759137
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_18: -4492693440617645353
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_30: 1982800399825339017
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_55: 4652611621679408274
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_10: -1549079042822382473
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_24: -1021751389250387413
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_35: -7351075050247002487
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_89: 5847496932361824018
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_4: 4392246197705387556
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_16: 1371252602920773342
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_17: -2767872715551704274
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_43: -7519611655055171544
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_42: -463968177699106544
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_80: 5788499114617677999
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_87: 4516203794958226462
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_77: -7721833990587120508
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_90: 8786797669239471045
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_71: -2537146275720920999
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_68: 6199993652901181005
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_82: -5311117643646659660
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_65: 7153952764042223208
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_34: 3239308472436371122
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_60: -5491490888721626740
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_62: 4748474217903992722
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_63: -1861527035657774875
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_44: -4154954950939845019
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_84: -6986930007932467988
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_93: 6889291233714785877
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_53: 3705571069676572397
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_47: 7086068274154449853
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_75: 4056707169460385149
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_57: 8895973863455540898
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_86: -8068814978554218798
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_88: -6993630121074733174
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_45: -4451528155886651651
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_92: -8373003073764074047
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_23: 7567038099685909833
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_95: -1457269102428804364
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_6: -1806035823258782330
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_59: 6249516681410604735
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_27: -5030852652178899371
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_73: -6244944640993351295
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_61: -4758950794743019538
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_79: -283495060319446957
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_46: -5809512525330632409
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_29: -26909301194854755
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_83: 1534898750138108923
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_0: -6123207899636745440
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_56: 5880167430839199822
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_76: 296902851704712806
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_41: 1055003515363564889
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_91: -6876120242398316725
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_21: 3475651402976509787
+      10 Great Pixel Art Tutorial And Free Resource Sites For Your Games_64: -734615664087430605
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

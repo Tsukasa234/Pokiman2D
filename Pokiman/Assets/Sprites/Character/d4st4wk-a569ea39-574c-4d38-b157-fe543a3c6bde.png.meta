@@ -72,6 +72,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -484,6 +485,23 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      d4st4wk-a569ea39-574c-4d38-b157-fe543a3c6bde_3: 637579227051406427
+      d4st4wk-a569ea39-574c-4d38-b157-fe543a3c6bde_2: 5203712569033892075
+      d4st4wk-a569ea39-574c-4d38-b157-fe543a3c6bde_5: -115984095807945666
+      d4st4wk-a569ea39-574c-4d38-b157-fe543a3c6bde_4: 7138987909922812033
+      d4st4wk-a569ea39-574c-4d38-b157-fe543a3c6bde_12: 1174039097935563284
+      d4st4wk-a569ea39-574c-4d38-b157-fe543a3c6bde_13: 5672204095577868515
+      d4st4wk-a569ea39-574c-4d38-b157-fe543a3c6bde_0: -6319134959991153952
+      d4st4wk-a569ea39-574c-4d38-b157-fe543a3c6bde_11: -9135417173951435585
+      d4st4wk-a569ea39-574c-4d38-b157-fe543a3c6bde_7: -5509807827104192880
+      d4st4wk-a569ea39-574c-4d38-b157-fe543a3c6bde_8: -1137504518924702206
+      d4st4wk-a569ea39-574c-4d38-b157-fe543a3c6bde_14: 5417710012454610579
+      d4st4wk-a569ea39-574c-4d38-b157-fe543a3c6bde_15: -8158038863505927039
+      d4st4wk-a569ea39-574c-4d38-b157-fe543a3c6bde_10: -8011045192324034254
+      d4st4wk-a569ea39-574c-4d38-b157-fe543a3c6bde_1: 6807437185443526237
+      d4st4wk-a569ea39-574c-4d38-b157-fe543a3c6bde_9: -1910652105595060726
+      d4st4wk-a569ea39-574c-4d38-b157-fe543a3c6bde_6: 810233724070850539
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
