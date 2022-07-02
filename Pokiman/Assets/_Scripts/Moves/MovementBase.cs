@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//Scriptable object con el que definimos los movimientos de los pokemon y sus estadisticas y tipo
 [CreateAssetMenu(fileName ="Move", menuName = "Pokemon/Nuevo Movimiento")]
 public class MovementBase : ScriptableObject
 {
