@@ -12,16 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13efefea81bbcc1439d5f0ad9649343a, type: 3}
   m_Name: Pidgey
   m_EditorClassIdentifier: 
-  ID: 0
-  namae: 
-  description: 
-  frontsprite: {fileID: 0}
-  backsprite: {fileID: 0}
-  type1: 0
-  type2: 0
-  maxHP: 0
-  attack: 0
-  defense: 0
-  speed: 0
-  spAttack: 0
-  spDefense: 0
+  ID: 16
+  namae: Pidgey
+  description: "Es manso y prefiere evitar los problemas. Sin embargo, si le molestan
+    atacar\xE1 ferozmente."
+  frontsprite: {fileID: 21300000, guid: c83444a0832767542928274d3ca9815c, type: 3}
+  backsprite: {fileID: 21300000, guid: 694579f01b2963c47ab3565d91b0e786, type: 3}
+  type1: 1
+  type2: 11
+  maxHP: 40
+  attack: 45
+  defense: 40
+  speed: 56
+  spAttack: 35
+  spDefense: 35

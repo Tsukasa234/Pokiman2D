@@ -25,11 +25,11 @@ MonoBehaviour:
     as well as from the nutrient-rich seeds contained within."
   frontsprite: {fileID: 21300000, guid: 14742231c7083a34ba59716bea178bae, type: 3}
   backsprite: {fileID: 21300000, guid: d401768b3bcb609408575bec58314e9e, type: 3}
-  type1: 5
-  type2: 8
+  type1: 6
+  type2: 9
   maxHP: 45
   attack: 49
   defense: 49
+  speed: 45
   spAttack: 65
   spDefense: 65
-  speed: 45

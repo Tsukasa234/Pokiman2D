@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe80c5a08bc55a04e98cd868da08ad0e, type: 3}
+  m_Name: PoisonSting
+  m_EditorClassIdentifier: 
+  namae: Poison Sting
+  description: "El enemigo es apu\xF1alado con una p\xFAa venenosa de alg\xFAn tipo.
+    Tambi\xE9n puede envenenar al objetivo."
+  tipoAtaque: 9
+  power: 15
+  accuracy: 100
+  pp: 35

@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13efefea81bbcc1439d5f0ad9649343a, type: 3}
   m_Name: Caterpie
   m_EditorClassIdentifier: 
-  ID: 4
+  ID: 10
   namae: Caterpie
-  description: 
+  description: "Su antena roja desprende un gran hedor para repeler a los enemigos.
+    Crece mud\xE1ndose repetidamente."
   frontsprite: {fileID: 21300000, guid: 599f788fcb6f86742ab7afbc53514e2a, type: 3}
   backsprite: {fileID: 21300000, guid: 96b729bffbc3c4d4da24c0af27053ede, type: 3}
   type1: 12
@@ -22,6 +23,6 @@ MonoBehaviour:
   maxHP: 45
   attack: 30
   defense: 35
+  speed: 45
   spAttack: 20
   spDefense: 20
-  speed: 45
