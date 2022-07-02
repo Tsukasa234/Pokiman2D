@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe80c5a08bc55a04e98cd868da08ad0e, type: 3}
-  m_Name: Scratch
+  m_Name: Growl
   m_EditorClassIdentifier: 
-  namae: Scratch
-  description: "Un tipo normal de ataque, Las garras afiladas son usadas para infligir
-    da\xF1o al objetivo"
+  namae: Growl
+  description: "El usuario gru\xF1e de forma cari\xF1osa, lo que hace que el enemigo
+    sea menos cauteloso. La estad\xEDstica de ataque del objetivo se reduce."
   tipoAtaque: 1
-  power: 40
+  power: 0
   accuracy: 100
-  pp: 35
+  pp: 40
