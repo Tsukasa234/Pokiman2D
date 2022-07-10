@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class HealthBar : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private GameObject _healthBar;
 
-    // Update is called once per frame
-    void Update()
+    /*private void Start()
     {
-        
+        _healthBar.transform.localScale = new Vector3(0.5f, 1.0f, 1.0f);
+    }*/
+
+    /// <summary>actualiza la barra de vida a partir del valor normalizado de la misma</summary>
+    /// <param name="pNormalizedValue">valor de la vida normalizado entre 0 y 1</param>
+    public void SetHealthBar(float pNormalizedValue)
+    {
+        _healthBar.transform.localScale = new Vector3(pNormalizedValue, 1.0f, 1.0f);
     }
 }

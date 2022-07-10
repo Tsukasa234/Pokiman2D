@@ -5,9 +5,11 @@ using UnityEngine;
 public class Pokemon
 {
     //referencia a la clase scriptableObject PokemonBase para las estadisticas de cada pokemon
-    private PokemonBase pokemon;
+    private PokemonBase _base;
+    public PokemonBase BasePokemon => _base;
     //Variable para medir el nivel en el que se encuentre el pokemon actual
     private int level;
+    public int Level { get => level; set=> level = value; }
     //Una lista de los movimientos que el pokemon actual puede aprender con su propiedad accesible
     [SerializeField]private List<Move> moves;
     public List<Move> Moves {get => moves; set => moves = value;}
@@ -18,13 +20,13 @@ public class Pokemon
     public Pokemon(PokemonBase pPokemon, int pLevel)
     {
         //Inicializacion de las variables
-        pokemon = pPokemon;
+        _base = pPokemon;
         level = pLevel;
-        _hp = pokemon.MaxHP;
+        _hp = MaxHP;
         //incializacion de la lista de movimientos
         moves = new List<Move>();
         //Ciclo para recorrer los movimientos que el pokemon puede aprender
-        foreach(var lMove in pokemon.LearnableMoves)
+        foreach(var lMove in _base.LearnableMoves)
         {
             //Medimos el nivel del pokemon para saber que movimiento agregar
             if (lMove.Level <= level)
@@ -41,10 +43,10 @@ public class Pokemon
         }
     }
     //aqui formulamos para subir las estadisticas del pokemon cada que suba de nivel
-    public int Attack => Mathf.FloorToInt((pokemon.Attack*level)/100f)+1;
-    public int MaxHP => Mathf.FloorToInt((pokemon.MaxHP*level)/100f)+10;
-    public int Defense => Mathf.FloorToInt((pokemon.Defense*level)/100f)+1;
-    public int Speed => Mathf.FloorToInt((pokemon.Speed*level)/100f)+1;
-    public int SpAttack => Mathf.FloorToInt((pokemon.SpAttack*level)/100f)+1;
-    public int SpDefense => Mathf.FloorToInt((pokemon.SpDefense*level)/100f)+1;
+    public int Attack => Mathf.FloorToInt((_base.Attack*level)/100f)+1;
+    public int MaxHP => Mathf.FloorToInt((_base.MaxHP*level)/20.0f)+10;
+    public int Defense => Mathf.FloorToInt((_base.Defense*level)/100f)+1;
+    public int Speed => Mathf.FloorToInt((_base.Speed*level)/100f)+1;
+    public int SpAttack => Mathf.FloorToInt((_base.SpAttack*level)/100f)+1;
+    public int SpDefense => Mathf.FloorToInt((_base.SpDefense*level)/100f)+1;
 }

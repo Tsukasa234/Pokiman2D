@@ -16,7 +16,9 @@ public class PokemonBase : ScriptableObject
     public string Description { get => description; }
 
     [SerializeField] private Sprite frontsprite;
+    public Sprite FrontSprite => frontsprite;
     [SerializeField] private Sprite backsprite;
+    public Sprite BackSprite => backsprite;
 
     [SerializeField] private PokemonType type1;
     [SerializeField] private PokemonType type2;
