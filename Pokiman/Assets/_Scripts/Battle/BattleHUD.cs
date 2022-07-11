@@ -14,13 +14,23 @@ public class BattleHUD : MonoBehaviour
     //Creamos una referencia al texto de Vida paa mostrar la vida actual y la vida maxima
     [SerializeField] private Text HealthText;
 
+    private Pokemon _pokemon;
+
     /// <summary>Metodo que actualizara los datos del pokemon en la UI</summary>
     /// <param name="pPokemon">Referencia para tomar los datos del pokemon en batlla</param>
     public void SetPokemonData(Pokemon pPokemon)
     {
+        _pokemon = pPokemon;
         pokemonName.text = pPokemon.BasePokemon.Namae;
         pokemonLevel.text = $"Lv.{pPokemon.Level}";
-        healthBar.SetHealthBar(pPokemon.HP/pPokemon.MaxHP);
-        HealthText.text = $"{pPokemon.HP}/{pPokemon.MaxHP}";
+        // healthBar.SetHealthBar(pPokemon.HP / pPokemon.MaxHP);
+        // HealthText.text = $"{pPokemon.HP}/{pPokemon.MaxHP}";
+        UpdatePokemonData();
+    }
+
+    public void UpdatePokemonData()
+    {
+        healthBar.SetHealthBar(_pokemon.HP/_pokemon.MaxHP);
+        HealthText.text = $"{_pokemon.HP}/{_pokemon.MaxHP}";
     }
 }

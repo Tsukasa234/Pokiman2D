@@ -94,6 +94,7 @@ public class BattleManager : MonoBehaviour
         yield return dialog.SetDialog($"{enemyUnit.pokemon.BasePokemon.Namae} ha usado {move.Base.Namae}");
 
         bool pokemonFainted = playerUnit.pokemon.ReceiveDamage(move, enemyUnit.pokemon);
+        playerHUD.UpdatePokemonData();
 
         if (pokemonFainted)
         {
@@ -194,6 +195,7 @@ public class BattleManager : MonoBehaviour
         Move move = playerUnit.pokemon.Moves[playerMovementSelection];
         yield return dialog.SetDialog($"{playerUnit.pokemon.BasePokemon.Namae} ha usado {move.Base.name}");
         bool pokemonFainted = enemyUnit.pokemon.ReceiveDamage(move, playerUnit.pokemon);
+        enemyHUD.UpdatePokemonData();
 
         if (pokemonFainted)
         {
