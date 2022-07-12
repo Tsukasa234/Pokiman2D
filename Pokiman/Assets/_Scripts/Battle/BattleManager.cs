@@ -29,15 +29,19 @@ public class BattleManager : MonoBehaviour
     }
     private void Update()
     {
+        timeSinceLastClick += Time.deltaTime;
+        if (dialog.isWriting)
+        {
+            return;
+        }
+
         if (battleStates == BattleStates.PlayerSelectAction)
         {
             HandlerPlayerSelection();
-            timeSinceLastClick += Time.deltaTime;
         }
         else if (battleStates == BattleStates.PlayerMove)
         {
             HandlePlayerMovementSelection();
-            timeSinceLastClick += Time.deltaTime;
         }
     }
 
@@ -92,7 +96,8 @@ public class BattleManager : MonoBehaviour
         Move move = enemyUnit.pokemon.randomMove();
 
         yield return dialog.SetDialog($"{enemyUnit.pokemon.BasePokemon.Namae} ha usado {move.Base.Namae}");
-
+        enemyUnit.PlayAttackAnimation();
+        yield return new WaitForSeconds(1.0f);
         bool pokemonFainted = playerUnit.pokemon.ReceiveDamage(move, enemyUnit.pokemon);
         playerHUD.UpdatePokemonData();
 
@@ -194,6 +199,8 @@ public class BattleManager : MonoBehaviour
     {
         Move move = playerUnit.pokemon.Moves[playerMovementSelection];
         yield return dialog.SetDialog($"{playerUnit.pokemon.BasePokemon.Namae} ha usado {move.Base.name}");
+        playerUnit.PlayAttackAnimation();
+        yield return new WaitForSeconds(1.0f);
         bool pokemonFainted = enemyUnit.pokemon.ReceiveDamage(move, playerUnit.pokemon);
         enemyHUD.UpdatePokemonData();
 

@@ -871,6 +871,8 @@ MonoBehaviour:
   TypeText: {fileID: 2101746597}
   colorSelection: {r: 1, g: 0.8910483, b: 0, a: 1}
   characterPerSecond: 20
+  timeToWaitAfterSecs: 1
+  isWriting: 0
 --- !u!1 &713591755
 GameObject:
   m_ObjectHideFlags: 0
@@ -17539,7 +17541,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -209, y: -77}
+  m_AnchoredPosition: {x: -200, y: -77}
   m_SizeDelta: {x: 260, y: 260}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1177907885
@@ -17595,6 +17597,9 @@ MonoBehaviour:
   _base: {fileID: 11400000, guid: cf0cbdedb30f1e24c9befc99abb3d162, type: 2}
   level: 2
   isPlayer: 1
+  playStartAnimationTime: 1
+  playStartAnimationAttack: 0.3
+  playStartAnimationFaint: 1
 --- !u!1 &1230931212
 GameObject:
   m_ObjectHideFlags: 0
@@ -22030,7 +22035,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 196, y: 83}
+  m_AnchoredPosition: {x: 200, y: 83}
   m_SizeDelta: {x: 250, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1372809204
@@ -22048,6 +22053,9 @@ MonoBehaviour:
   _base: {fileID: 11400000, guid: 5af88eb65e4d1c44a877ea9e521a3475, type: 2}
   level: 1
   isPlayer: 0
+  playStartAnimationTime: 1
+  playStartAnimationAttack: 0.3
+  playStartAnimationFaint: 1
 --- !u!114 &1372809205
 MonoBehaviour:
   m_ObjectHideFlags: 0

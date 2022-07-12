@@ -17,4 +17,17 @@ public class HealthBar : MonoBehaviour
     {
         _healthBar.transform.localScale = new Vector3(pNormalizedValue, 1.0f, 1.0f);
     }
+
+    public IEnumerator SetSmoothHP(float pNormalizedValue)
+    {
+        float currentScale = _healthBar.transform.localScale.x;
+        float updateQuantity = currentScale - pNormalizedValue;
+        while (currentScale - pNormalizedValue > Mathf.Epsilon)
+        {
+            currentScale -= updateQuantity * Time.deltaTime;
+            _healthBar.transform.localScale = new Vector3(currentScale, 1.0f, 1.0f);
+            yield return null;
+        }
+        _healthBar.transform.localScale = new Vector3(pNormalizedValue, 1.0f, 1.0f);
+    }
 }

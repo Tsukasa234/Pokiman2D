@@ -30,7 +30,9 @@ public class BattleHUD : MonoBehaviour
 
     public void UpdatePokemonData()
     {
-        healthBar.SetHealthBar(_pokemon.HP/_pokemon.MaxHP);
+        StartCoroutine(healthBar.SetSmoothHP((float)_pokemon.HP / _pokemon.MaxHP));
         HealthText.text = $"{_pokemon.HP}/{_pokemon.MaxHP}";
     }
+
+    
 }

@@ -21,9 +21,13 @@ public class BattleDialogBox : MonoBehaviour
     public float characterPerSecond;
     public float timeToWaitAfterSecs = 1.0f;
 
+    public bool isWriting = false;
+
 
     public IEnumerator SetDialog(string messagge)
     {
+        isWriting = true;
+
         battleDialog.text = "";
 
         foreach (var character in messagge)
@@ -33,6 +37,7 @@ public class BattleDialogBox : MonoBehaviour
             yield return new WaitForSeconds(1 / characterPerSecond);
         }
         yield return new WaitForSeconds(timeToWaitAfterSecs);
+        isWriting = false;
     }
 
     public void ToggleDialogText(bool activated)
