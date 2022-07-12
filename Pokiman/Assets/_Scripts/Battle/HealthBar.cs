@@ -1,10 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
     [SerializeField] private GameObject _healthBar;
+
+    public Color BarColor
+    {
+        get
+        {
+            var localScale = _healthBar.transform.localScale.x;
+            if (localScale < 0.15f)
+            {
+                return new Color(1.0f, 0, 0, 1.0f);
+            }
+            else if (localScale < 0.5f)
+            {
+                return new Color(1.0f, 1.0f, 0, 1.0f);
+            }
+            else
+            {
+                return new Color(0.45f, 0.68f, 0.19f, 1.0f);
+            }
+        }
+    }
 
     /*private void Start()
     {
@@ -26,6 +47,7 @@ public class HealthBar : MonoBehaviour
         {
             currentScale -= updateQuantity * Time.deltaTime;
             _healthBar.transform.localScale = new Vector3(currentScale, 1.0f, 1.0f);
+            _healthBar.GetComponent<Image>().color = BarColor;
             yield return null;
         }
         _healthBar.transform.localScale = new Vector3(pNormalizedValue, 1.0f, 1.0f);

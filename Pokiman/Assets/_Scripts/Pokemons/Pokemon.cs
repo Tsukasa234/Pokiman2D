@@ -50,9 +50,24 @@ public class Pokemon
     public int SpAttack => Mathf.FloorToInt((_base.SpAttack * level) / 100f) + 1;
     public int SpDefense => Mathf.FloorToInt((_base.SpDefense * level) / 100f) + 1;
 
-    public bool ReceiveDamage(Move move, Pokemon attacker)
+    public DamageDescription ReceiveDamage(Move move, Pokemon attacker)
     {
-        float modifiers = Random.Range(0.85f, 1.00f);
+        float critical = 1f;
+        if (Random.Range(0f, 100f) < 10f)
+        {
+            critical = 2f;
+        }
+
+        float type1 = TypeMatrix.GetMupltiplierEfectiveness(move.Base.TipoAtaque, this.BasePokemon.Type1);
+        float type2 = TypeMatrix.GetMupltiplierEfectiveness(move.Base.TipoAtaque, this.BasePokemon.Type2);
+
+        var damageDesc = new DamageDescription(){
+            Critical = critical,
+            Type = type1 * type2,
+            Fainted = false
+        };
+
+        float modifiers = Random.Range(0.85f, 1.00f) * type1 * type2 * critical;
         float baseDamage = ((2 * attacker.Level / 5f + 2) * move.Base.Power * (attacker.Attack / (float)Defense)) / 50f + 2;
 
         int totalDamage = Mathf.FloorToInt(baseDamage * modifiers);
@@ -62,9 +77,9 @@ public class Pokemon
         if (HP <= 0)
         {
             HP = 0;
-            return true;
+            damageDesc.Fainted = true;
         }
-        return false;
+        return damageDesc;
     }
 
     public Move randomMove()
@@ -72,4 +87,15 @@ public class Pokemon
         int randID = Random.Range(0, Moves.Count);
         return Moves[randID];
     }
+}
+
+public class DamageDescription
+{
+    public float Critical {get; set;}
+
+    public float Type {get; set;}
+
+    public bool Fainted {get; set;}
+
+
 }

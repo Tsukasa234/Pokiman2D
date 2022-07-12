@@ -12,7 +12,7 @@ public class PokemonBase : ScriptableObject
     public string Namae { get { return namae; } }
 
 
-    [TextArea] [SerializeField] private string description;
+    [TextArea][SerializeField] private string description;
     public string Description { get => description; }
 
     [SerializeField] private Sprite frontsprite;
@@ -22,8 +22,8 @@ public class PokemonBase : ScriptableObject
 
     [SerializeField] private PokemonType type1;
     [SerializeField] private PokemonType type2;
-    public PokemonType Type1 {get => type1;}
-    public PokemonType Type2 {get => type2;}
+    public PokemonType Type1 { get => type1; }
+    public PokemonType Type2 { get => type2; }
 
     //Stats
     [SerializeField] private int maxHP;
@@ -51,24 +51,27 @@ public enum PokemonType
     Normal,
     Fire,
     Water,
-    Darkness,
     Electric,
     Grass,
-    Fight,
     Ice,
+    Fight,
     Poison,
     Ground,
     Fly,
+    Physic,
     Bug,
+    Rock,
     Ghost,
     Dragon,
-    Fairy,
+    Dark,
     Steel,
+    Fairy,
 }
 
 //Clase serializable(se necesita la libreria using system;) que guarda el movimiento y el nivel que se necesita
 //para acceder a ese movimiento
-[Serializable]public class LearnableMove
+[Serializable]
+public class LearnableMove
 {
     //Referencia al scriptable object de los movimientos
     [SerializeField] private MovementBase move;
@@ -76,4 +79,61 @@ public enum PokemonType
     //variable para decir que nivel se necesita para acceder a ese movimiento
     [SerializeField] private int level;
     public int Level => level;
-} 
+}
+
+public class TypeMatrix
+{
+    private static float[][] matrix =
+    {
+        /*	                NOR FIR WAT ELE GRA ICE FIG POI GRO FLY PSY BUG ROC GHO DRA DAR STE FAI*/
+        /*	*/
+        /*NOR*/ new float[] {1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 0.5f, 0f, 1f, 1f, 0.5f, 1f},  
+
+        /*FIR*/ new float[] {1f, 0.5f, 0.5f, 2f, 2f, 1f, 1f, 1f, 1f, 1f, 1f, 2f, 0.5f, 1f, 0.5f, 1f, 2f, 1f},
+
+        /*WAT*/ new float[] {1f, 2f, 0.5f, 1f, 0.5f, 1f, 1f, 1f, 2f, 1f, 1f, 1f, 2f, 1f, 0.5f, 1f, 2f, 1f},
+
+        /*ELE*/ new float[] {1f, 1f, 2f, 0.5f, 0.5f, 1f, 1f, 1f, 0f, 2f, 1f, 1f, 1f, 1f, 0.5f, 1f, 1f, 1f},
+
+        /*GRA*/ new float[] {1f, 0.5f, 2f, 1f, 0.5f, 1f, 1f, 0.5f, 2f, 0.5f, 1f, 0.5f, 2f, 1f, 0.5f, 1f, 0.5f, 1f},
+
+        /*ICE*/ new float[] {1f, 0.5f, 0.5f, 1f, 2f, 0.5f, 1f, 1f, 2f, 2f, 1f, 1f, 1f, 1f, 2f, 1f, 0.5f, 1f},
+
+        /*FIG*/ new float[] {2f, 1f, 1f, 1f, 1f, 2f, 1f, 0.5f, 1f, 0.5f, 0.5f, 0.5f, 2f, 0f, 1f, 2f, 2f, 0.5f},
+
+        /*POI*/ new float[] {1f, 1f, 1f, 1f, 2f, 1f, 1f, 0.5f, 0.5f, 1f, 1f, 1f, 0.5f, 0.5f, 1f, 2f, 2f, 0.5f},
+
+        /*GRO*/ new float[] {1f, 2f, 1f, 2f, 0.5f, 1f, 1f, 2f, 1f, 0f, 1f, 0.5f, 2f, 1f, 1f, 1f, 2f, 1f},
+
+        /*FLY*/ new float[] {1f, 1f, 1f, 0.5f, 2f, 1f, 2f, 1f, 1f, 1f, 1f, 2f, 0.5f, 1f, 1f, 1f, 0.5f, 1f},
+
+        /*PSY*/ new float[] {1f, 1f, 1f, 1f, 1f, 1f, 2f, 2f, 1f, 1f, 0.5f, 1f, 1f, 1f, 1f, 0f, 0.5f, 1f},
+
+        /*BUG*/ new float[] {1f, 0.5f, 1f, 1f, 2f, 1f, 0.5f, 0.5f, 1f, 0.5f, 2f, 1f, 1f, 0.5f, 1f, 2f, 0.5f, 0.5f},
+
+        /*ROC*/ new float[] {1f, 2f, 1f, 1f, 1f, 2f, 0.5f, 1f, 0.5f, 2f, 1f, 2f, 1f, 1f, 1f, 1f, 0.5f, 1f},
+
+        /*GHO*/ new float[] {0f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 2f, 1f, 1f, 2f, 1f, 0.5f, 1f, 1f},
+
+        /*DRA*/ new float[] {1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 2f, 1f, 0.5f, 0f},
+
+        /*DAR*/ new float[] {1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 2f, 1f, 1f, 2f, 1f, 0.5f, 1f, 0.5f},
+
+        /*STE*/ new float[] {1f, 0.5f, 0.5f, 0.5f, 1f, 2f, 1f, 1f, 1f, 1f, 1f, 1f, 2f, 1f, 1f, 1f, 0.5f, 2f},
+
+        /*FAI*/ new float[] {1f, 0.5f, 1f, 1f, 1f, 1f, 2f, 0.5f, 1f, 1f, 1f, 1f, 1f, 1f, 2f, 2f, 0.5f, 1f}
+    };
+
+    public static float GetMupltiplierEfectiveness(PokemonType attackType, PokemonType pokemonDefenderType)
+    {
+        if (attackType == PokemonType.None || pokemonDefenderType == PokemonType.None)
+        {
+            return 1.0f;
+        }
+
+        int row = (int)attackType;
+        int col = (int)pokemonDefenderType;
+
+        return matrix[row - 1][col -1];
+    }
+}

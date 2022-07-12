@@ -17,12 +17,15 @@ public class BattleUnit : MonoBehaviour
     private Image pokemonImage;
 
     private Vector3 initialPosition;
-    [SerializeField] private float playStartAnimationTime = 1.0f, playStartAnimationAttack = 0.3f, playStartAnimationFaint = 1.0f;
+    private Color initialColor;
+    [SerializeField] private float playStartAnimationTime = 1.0f, playStartAnimationAttack = 0.3f, 
+            hitTimeAnimation = 0.15f, playStartAnimationFaint = 1.0f;
 
     private void Awake()
     {
         pokemonImage = GetComponent<Image>();
         initialPosition = pokemonImage.transform.localPosition;
+        initialColor = pokemonImage.color;
     }
 
     /// <summary>
@@ -48,12 +51,24 @@ public class BattleUnit : MonoBehaviour
     public void PlayAttackAnimation()
     {
         var seq = DOTween.Sequence();
-        seq.Append(pokemonImage.transform.DOLocalMoveX(initialPosition.x + (isPlayer? 1:-1) * 80, playStartAnimationAttack));
+        seq.Append(pokemonImage.transform.DOLocalMoveX(initialPosition.x + (isPlayer ? 1 : -1) * 80, playStartAnimationAttack));
         seq.Append(pokemonImage.transform.DOLocalMoveX(initialPosition.x, playStartAnimationAttack));
+    }
+
+    public void PlayReceiveDamageAnimation()
+    {
+        var seq = DOTween.Sequence();
+        for (var i = 0; i < 2; i++)
+        {
+            seq.Append(pokemonImage.DOColor(Color.red, hitTimeAnimation));
+            seq.Append(pokemonImage.DOColor(initialColor, hitTimeAnimation));
+        }
     }
 
     public void PlayFaintAnimation()
     {
-
+        var seq = DOTween.Sequence();
+        seq.Append(pokemonImage.transform.DOLocalMoveY(initialPosition.y - 200, playStartAnimationFaint));
+        seq.Join(pokemonImage.DOFade(0, playStartAnimationFaint));
     }
 }
