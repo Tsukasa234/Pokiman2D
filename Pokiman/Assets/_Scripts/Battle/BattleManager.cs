@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,11 +24,14 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private BattleDialogBox dialog;
     public BattleStates battleStates;
 
-    private void Start()
+    public event Action<bool> OnPokemonBattleFinish;
+
+    public void HandleStartBattle()
     {
         StartCoroutine(SetupBattle());
     }
-    private void Update()
+    
+    public void HandleUpdate()
     {
         timeSinceLastClick += Time.deltaTime;
         if (dialog.isWriting)
@@ -94,6 +98,7 @@ public class BattleManager : MonoBehaviour
     {
         battleStates = BattleStates.EnemyMove;
         Move move = enemyUnit.pokemon.randomMove();
+        move.PP--;
 
         var oldHPValue = playerUnit.pokemon.HP;
 
@@ -110,6 +115,8 @@ public class BattleManager : MonoBehaviour
         {
             yield return dialog.SetDialog($"{playerUnit.pokemon.BasePokemon.Namae} se ha debilitado");
             playerUnit.PlayFaintAnimation();
+            yield return new WaitForSeconds(1.5f);
+            OnPokemonBattleFinish(false);
         }
         else
         {
@@ -205,7 +212,7 @@ public class BattleManager : MonoBehaviour
     {
         Move move = playerUnit.pokemon.Moves[playerMovementSelection];
         var oldHPValue = enemyUnit.pokemon.HP;
-
+        move.PP--;
         yield return dialog.SetDialog($"{playerUnit.pokemon.BasePokemon.Namae} ha usado {move.Base.name}");
         playerUnit.PlayAttackAnimation();
         enemyUnit.PlayReceiveDamageAnimation();
@@ -218,6 +225,8 @@ public class BattleManager : MonoBehaviour
         {
             yield return dialog.SetDialog($"{enemyUnit.pokemon.BasePokemon.Namae} se ha debilitado");
             enemyUnit.PlayFaintAnimation();
+            yield return new WaitForSeconds(1.5f);
+            OnPokemonBattleFinish(true);
         }
         else
         {

@@ -15,7 +15,7 @@ MonoBehaviour:
   namae: Poison Sting
   description: "El enemigo es apu\xF1alado con una p\xFAa venenosa de alg\xFAn tipo.
     Tambi\xE9n puede envenenar al objetivo."
-  tipoAtaque: 9
+  tipoAtaque: 8
   power: 15
   accuracy: 100
   pp: 35

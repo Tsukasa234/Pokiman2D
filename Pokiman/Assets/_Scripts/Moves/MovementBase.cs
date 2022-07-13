@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 //Scriptable object con el que definimos los movimientos de los pokemon y sus estadisticas y tipo
-[CreateAssetMenu(fileName ="Move", menuName = "Pokemon/Nuevo Movimiento")]
+[CreateAssetMenu(fileName = "Move", menuName = "Pokemon/Nuevo Movimiento")]
 public class MovementBase : ScriptableObject
 {
     [SerializeField] private string namae;
@@ -16,5 +16,23 @@ public class MovementBase : ScriptableObject
     [SerializeField] private int accuracy;
     public int Accuracy => accuracy;
     [SerializeField] private int pp;
-    public int Pp =>  pp;
+    public int Pp => pp;
+
+    public bool IsSpecialMove
+    {
+        get
+        {
+            if (tipoAtaque == PokemonType.Fire || tipoAtaque == PokemonType.Water ||
+                    tipoAtaque == PokemonType.Grass || tipoAtaque == PokemonType.Ice ||
+                    tipoAtaque == PokemonType.Electric || tipoAtaque == PokemonType.Physic ||
+                    tipoAtaque == PokemonType.Dragon || tipoAtaque == PokemonType.Dark)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+    }
 }

@@ -25,6 +25,7 @@ public class BattleHUD : MonoBehaviour
         pokemonLevel.text = $"Lv.{pPokemon.Level}";
         // healthBar.SetHealthBar(pPokemon.HP / pPokemon.MaxHP);
         // HealthText.text = $"{pPokemon.HP}/{pPokemon.MaxHP}";
+        healthBar.SetHealthBar((float)_pokemon.HP / _pokemon.MaxHP);
         UpdatePokemonData(_pokemon.HP);
     }
 

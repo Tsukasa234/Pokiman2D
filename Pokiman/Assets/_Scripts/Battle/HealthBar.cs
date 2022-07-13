@@ -27,16 +27,19 @@ public class HealthBar : MonoBehaviour
         }
     }
 
-    /*private void Start()
+    private Image barColor;
+
+    private void Start()
     {
-        _healthBar.transform.localScale = new Vector3(0.5f, 1.0f, 1.0f);
-    }*/
+        barColor  = _healthBar.GetComponent<Image>();
+    }
 
     /// <summary>actualiza la barra de vida a partir del valor normalizado de la misma</summary>
     /// <param name="pNormalizedValue">valor de la vida normalizado entre 0 y 1</param>
     public void SetHealthBar(float pNormalizedValue)
     {
         _healthBar.transform.localScale = new Vector3(pNormalizedValue, 1.0f, 1.0f);
+        // barColor.color = BarColor;
     }
 
     public IEnumerator SetSmoothHP(float pNormalizedValue)
@@ -47,7 +50,7 @@ public class HealthBar : MonoBehaviour
         {
             currentScale -= updateQuantity * Time.deltaTime;
             _healthBar.transform.localScale = new Vector3(currentScale, 1.0f, 1.0f);
-            _healthBar.GetComponent<Image>().color = BarColor;
+            barColor.color = BarColor;
             yield return null;
         }
         _healthBar.transform.localScale = new Vector3(pNormalizedValue, 1.0f, 1.0f);

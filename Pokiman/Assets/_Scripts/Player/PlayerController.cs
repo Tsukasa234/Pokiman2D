@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,6 +14,8 @@ public class PlayerController : MonoBehaviour
 
     private Animator anim;
 
+    public event Action OnPokemonEncounter;
+
     [SerializeField]
     private LayerMask solidObjectsLayer, pokemonLayer;
     private void Start()
@@ -19,7 +23,7 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
-    private void Update()
+    public void HandleUpdate()
     {
         //float horizontal = Input.GetAxisRaw("Horizontal");
         //float vertical = Input.GetAxisRaw("Vertical");
@@ -96,7 +100,8 @@ public class PlayerController : MonoBehaviour
         {
             if (Random.Range(0, 100) < 15)
             {
-                Debug.Log("Un Pokemon Salvaje a aparecido");
+                OnPokemonEncounter();
+                anim.SetBool("isWalk", false);
             }
         }
     }

@@ -15,7 +15,7 @@ MonoBehaviour:
   namae: Vine Whip
   description: "El enemigo es golpeado con enredaderas delgadas en forma de l\xE1tigo
     para infligir da\xF1o."
-  tipoAtaque: 6
+  tipoAtaque: 5
   power: 45
   accuracy: 100
   pp: 25

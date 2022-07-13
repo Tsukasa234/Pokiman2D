@@ -15,7 +15,7 @@ MonoBehaviour:
   namae: WingAttack
   description: "El enemigo es golpeado con grandes e imponentes alas extendidas para
     infligir da\xF1o."
-  tipoAtaque: 11
+  tipoAtaque: 10
   power: 60
   accuracy: 100
   pp: 35
