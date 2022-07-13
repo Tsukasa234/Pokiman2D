@@ -31,9 +31,9 @@ public class BattleUnit : MonoBehaviour
     /// <summary>
     ///Metodo para configurar al pokemon que estara en la batalla dependiendo de si es enemigo o el player
     ///</summary>
-    public void SetupPokemon()
+    public void SetupPokemon(Pokemon pPokemon)
     {
-        pokemon = new Pokemon(_base, level);
+        pokemon = pPokemon;
 
         pokemonImage.sprite = (isPlayer ? pokemon.BasePokemon.BackSprite
             : pokemon.BasePokemon.FrontSprite);

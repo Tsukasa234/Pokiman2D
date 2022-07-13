@@ -26,11 +26,16 @@ public class BattleManager : MonoBehaviour
 
     public event Action<bool> OnPokemonBattleFinish;
 
-    public void HandleStartBattle()
+    PokemonParty playerParty;
+    Pokemon wildPokemon;
+
+    public void HandleStartBattle(PokemonParty playerParty, Pokemon wildPokemon)
     {
+        this.playerParty = playerParty;
+        this.wildPokemon = wildPokemon;
         StartCoroutine(SetupBattle());
     }
-    
+
     public void HandleUpdate()
     {
         timeSinceLastClick += Time.deltaTime;
@@ -53,11 +58,11 @@ public class BattleManager : MonoBehaviour
     {
         battleStates = BattleStates.StartBattle;
 
-        playerUnit.SetupPokemon();
+        playerUnit.SetupPokemon(playerParty.GetFirstHealthyPokemon());
         playerHUD.SetPokemonData(playerUnit.pokemon);
         dialog.PlayerMovements(playerUnit.pokemon.Moves);
 
-        enemyUnit.SetupPokemon();
+        enemyUnit.SetupPokemon(wildPokemon);
         enemyHUD.SetPokemonData(enemyUnit.pokemon);
 
         yield return dialog.SetDialog($"Un {enemyUnit.pokemon.BasePokemon.Namae} salvaje ha aparecido");
@@ -102,7 +107,7 @@ public class BattleManager : MonoBehaviour
 
         var oldHPValue = playerUnit.pokemon.HP;
 
-        yield return dialog.SetDialog($"{enemyUnit.pokemon.BasePokemon.Namae} ha usado {move.Base.Namae}");
+        yield return dialog.SetDialog($"{enemyUnit.pokemon.BasePokemon.Namae} salvaje ha usado {move.Base.Namae}");
         enemyUnit.PlayAttackAnimation();
         playerUnit.PlayReceiveDamageAnimation();
         yield return new WaitForSeconds(1.0f);
@@ -116,7 +121,23 @@ public class BattleManager : MonoBehaviour
             yield return dialog.SetDialog($"{playerUnit.pokemon.BasePokemon.Namae} se ha debilitado");
             playerUnit.PlayFaintAnimation();
             yield return new WaitForSeconds(1.5f);
-            OnPokemonBattleFinish(false);
+
+            var nextPokemon = playerParty.GetFirstHealthyPokemon();
+            if (nextPokemon == null) // Si es null no nos queda ningun pokemon con vida
+            {
+                OnPokemonBattleFinish(false);
+            }
+            else //Tengo que sacar otro pokemon con vida
+            {
+                playerUnit.SetupPokemon(nextPokemon);
+                playerHUD.SetPokemonData(nextPokemon);
+
+                dialog.PlayerMovements(nextPokemon.Moves);
+
+                yield return dialog.SetDialog($"Adelante {nextPokemon.BasePokemon.Namae}!");
+                PlayerAction();
+            }
+
         }
         else
         {
@@ -139,7 +160,12 @@ public class BattleManager : MonoBehaviour
         if (Input.GetAxis("Vertical") != 0)
         {
             timeSinceLastClick = 0;
-            currentSelectionAction = (currentSelectionAction + 1) % 2;
+            currentSelectionAction = (currentSelectionAction + 2) % 4;
+        }
+        else if (Input.GetAxisRaw("Horizontal") != 0)
+        {
+            timeSinceLastClick = 0;
+            currentSelectionAction = (currentSelectionAction + 1) % 2 + 2 * Mathf.FloorToInt(currentSelectionAction / 2);
         }
         //Luchar
         //Huir
@@ -156,8 +182,24 @@ public class BattleManager : MonoBehaviour
             }
             else if (currentSelectionAction == 1)
             {
-                //TODO: Implementar la batalla
+                //Seleccionar Pokemon
+                OpenPartySelectionScreen();
             }
+            else if (currentSelectionAction == 2)
+            {
+                //Seleccionar Mochila
+                OpenInventoryScreen();
+            }
+            else if (currentSelectionAction == 3)
+            {
+                //Seleccionar Huir
+                OnPokemonBattleFinish(false);
+            }
+        }
+
+        if (Input.GetAxisRaw("Return") != 0)
+        {
+             OnPokemonBattleFinish(false);
         }
     }
 
@@ -172,7 +214,7 @@ public class BattleManager : MonoBehaviour
         if (Input.GetAxisRaw("Vertical") != 0)
         {
             timeSinceLastClick = 0;
-            var oldSelectionMove = playerMovementSelection;
+            var oldSelectionMove = (playerMovementSelection + 2) % 2;
             playerMovementSelection = (playerMovementSelection + 2) % 4;
             if (playerMovementSelection >= playerUnit.pokemon.Moves.Count)
             {
@@ -183,15 +225,8 @@ public class BattleManager : MonoBehaviour
         else if (Input.GetAxisRaw("Horizontal") != 0)
         {
             timeSinceLastClick = 0;
-            var oldSelectionMove = playerMovementSelection;
-            if (playerMovementSelection <= 1)
-            {
-                playerMovementSelection = (playerMovementSelection + 1) % 2;
-            }
-            else
-            {
-                playerMovementSelection = (playerMovementSelection + 1) % 2 + 2;
-            }
+            var oldSelectionMove = (playerMovementSelection + 1) % 2 + 2 * 
+                Mathf.FloorToInt(playerMovementSelection / 2);
             if (playerMovementSelection >= playerUnit.pokemon.Moves.Count)
             {
                 playerMovementSelection = oldSelectionMove;
@@ -205,6 +240,11 @@ public class BattleManager : MonoBehaviour
             dialog.ToggleMovesText(false);
             dialog.ToggleDialogText(true);
             StartCoroutine(PerformPlayerMovement());
+        }
+        
+        if (Input.GetAxisRaw("Return" ) != 0)
+        {
+            PlayerAction();
         }
     }
 
@@ -253,5 +293,23 @@ public class BattleManager : MonoBehaviour
             yield return dialog.SetDialog("El ataque no fue efectivo...");
         }
 
+    }
+
+    public void OpenPartySelectionScreen()
+    {
+        print("abrir la pantalla de seleccion de pokemon");
+        if (Input.GetAxisRaw("Return" ) != 0)
+        {
+            PlayerAction();
+        }
+    }
+
+    public void OpenInventoryScreen()
+    {
+        print("Abrir la pantalla de inventario");
+        if (Input.GetAxisRaw("Return" ) != 0)
+        {
+            PlayerAction();
+        }
     }
 }
