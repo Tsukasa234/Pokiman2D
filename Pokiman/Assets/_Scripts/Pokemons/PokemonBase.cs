@@ -9,11 +9,11 @@ public class PokemonBase : ScriptableObject
 {
     [SerializeField] private int ID;
     [SerializeField] private string namae;
-    public string Namae { get { return namae; } }
+    public string Namae => namae;
 
 
     [TextArea][SerializeField] private string description;
-    public string Description { get => description; }
+    public string Description => description; 
 
     [SerializeField] private Sprite frontsprite;
     public Sprite FrontSprite => frontsprite;
@@ -22,8 +22,8 @@ public class PokemonBase : ScriptableObject
 
     [SerializeField] private PokemonType type1;
     [SerializeField] private PokemonType type2;
-    public PokemonType Type1 { get => type1; }
-    public PokemonType Type2 { get => type2; }
+    public PokemonType Type1 => type1;
+    public PokemonType Type2 => type2;
 
     //Stats
     [SerializeField] private int maxHP;
