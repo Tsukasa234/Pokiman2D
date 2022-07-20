@@ -50,9 +50,9 @@ TagManager:
   - name: Details
     uniqueID: 3912242409
     locked: 0
-  - name: Player
-    uniqueID: 2379861817
-    locked: 0
   - name: Most ForeGround
     uniqueID: 1002467899
+    locked: 0
+  - name: Player
+    uniqueID: 2379861817
     locked: 0

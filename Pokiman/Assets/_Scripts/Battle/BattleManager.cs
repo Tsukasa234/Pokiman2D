@@ -9,7 +9,8 @@ public enum BattleStates
     PlayerSelectAction,
     PlayerMove,
     EnemyMove,
-    Busy
+    Busy,
+    PartySelectScreen,
 
 }
 
@@ -22,12 +23,17 @@ public class BattleManager : MonoBehaviour
     [SerializeField] private BattleHUD enemyHUD;
 
     [SerializeField] private BattleDialogBox dialog;
+    [SerializeField] private PartyHUD partyHud;
+
     public BattleStates battleStates;
 
     public event Action<bool> OnPokemonBattleFinish;
 
     PokemonParty playerParty;
     Pokemon wildPokemon;
+
+
+
 
     public void HandleStartBattle(PokemonParty playerParty, Pokemon wildPokemon)
     {
@@ -52,6 +58,10 @@ public class BattleManager : MonoBehaviour
         {
             HandlePlayerMovementSelection();
         }
+        else if (battleStates == BattleStates.PartySelectScreen)
+        {
+            HandlePartySelection();
+        }
     }
 
     public IEnumerator SetupBattle()
@@ -64,6 +74,8 @@ public class BattleManager : MonoBehaviour
 
         enemyUnit.SetupPokemon(wildPokemon);
         enemyHUD.SetPokemonData(enemyUnit.pokemon);
+
+        partyHud.InitPartyHUD();
 
         yield return dialog.SetDialog($"Un {enemyUnit.pokemon.BasePokemon.Namae} salvaje ha aparecido");
         if (enemyUnit.pokemon.Speed > playerUnit.pokemon.Speed)
@@ -199,7 +211,7 @@ public class BattleManager : MonoBehaviour
 
         if (Input.GetAxisRaw("Return") != 0)
         {
-             OnPokemonBattleFinish(false);
+            OnPokemonBattleFinish(false);
         }
     }
 
@@ -214,7 +226,7 @@ public class BattleManager : MonoBehaviour
         if (Input.GetAxisRaw("Vertical") != 0)
         {
             timeSinceLastClick = 0;
-            var oldSelectionMove = (playerMovementSelection + 2) % 2;
+            var oldSelectionMove = playerMovementSelection;
             playerMovementSelection = (playerMovementSelection + 2) % 4;
             if (playerMovementSelection >= playerUnit.pokemon.Moves.Count)
             {
@@ -225,7 +237,8 @@ public class BattleManager : MonoBehaviour
         else if (Input.GetAxisRaw("Horizontal") != 0)
         {
             timeSinceLastClick = 0;
-            var oldSelectionMove = (playerMovementSelection + 1) % 2 + 2 * 
+            var oldSelectionMove = playerMovementSelection;
+            playerMovementSelection = (playerMovementSelection + 1) % 2 + 2 *
                 Mathf.FloorToInt(playerMovementSelection / 2);
             if (playerMovementSelection >= playerUnit.pokemon.Moves.Count)
             {
@@ -241,11 +254,75 @@ public class BattleManager : MonoBehaviour
             dialog.ToggleDialogText(true);
             StartCoroutine(PerformPlayerMovement());
         }
-        
-        if (Input.GetAxisRaw("Return" ) != 0)
+
+        if (Input.GetAxisRaw("Return") != 0)
         {
             PlayerAction();
         }
+    }
+
+    private int currentSelectedPokemon;
+    public void HandlePartySelection()
+    {
+        if (timeSinceLastClick < timeBeetweenClicks)
+        {
+            return;
+        }
+
+        if (Input.GetAxisRaw("Vertical") != 0)
+        {
+            timeSinceLastClick = 0;
+            currentSelectedPokemon -= (int)Input.GetAxisRaw("Vertical") * 2;
+        }
+        else if (Input.GetAxisRaw("Horizontal") != 0)
+        {
+            timeSinceLastClick = 0;
+            currentSelectedPokemon += (int)Input.GetAxisRaw("Horizontal");
+            
+        }
+        currentSelectedPokemon = Mathf.Clamp(currentSelectedPokemon, 0, playerParty.Pokemons.Count - 1);
+        partyHud.UpdateSelectedPokemon(currentSelectedPokemon);
+
+        if (Input.GetAxisRaw("Submit") != 0)
+        {
+            timeSinceLastClick = 0;
+            var selectedPokemon = playerParty.Pokemons[currentSelectedPokemon];
+
+            if (selectedPokemon.HP <= 0)
+            {
+                partyHud.SetMessage($"{selectedPokemon.BasePokemon.Namae} esta debilitado");
+                return;
+            }
+            else if (selectedPokemon == playerUnit.pokemon)
+            {
+                partyHud.SetMessage($"{selectedPokemon.BasePokemon.Namae} ya esta en batalla");
+                return;
+            }
+            else
+            {
+                partyHud.gameObject.SetActive(false);
+                StartCoroutine(SwitchPokemon(selectedPokemon));
+            }
+        }
+
+        if (Input.GetAxisRaw("Return") != 0)
+        {
+            partyHud.gameObject.SetActive(false);
+            battleStates = BattleStates.Busy;
+            PlayerAction();
+        }
+    }
+
+    IEnumerator SwitchPokemon(Pokemon newPokemon)
+    {
+        yield return dialog.SetDialog($"Vuelve {playerUnit.pokemon.BasePokemon.Namae}");
+        playerUnit.PlayFaintAnimation();
+        yield return new WaitForSeconds(1.5f);
+        playerUnit.SetupPokemon(newPokemon);
+        playerHUD.SetPokemonData(newPokemon);
+        dialog.PlayerMovements(newPokemon.Moves);
+        yield return dialog.SetDialog($"{newPokemon.BasePokemon.Namae} yo te eligo");
+        StartCoroutine(EnemyAction());
     }
 
     IEnumerator PerformPlayerMovement()
@@ -263,7 +340,7 @@ public class BattleManager : MonoBehaviour
 
         if (damageDesc.Fainted)
         {
-            yield return dialog.SetDialog($"{enemyUnit.pokemon.BasePokemon.Namae} se ha debilitado");
+            yield return dialog.SetDialog($"{enemyUnit.pokemon.BasePokemon.Namae} salvaje se ha debilitado");
             enemyUnit.PlayFaintAnimation();
             yield return new WaitForSeconds(1.5f);
             OnPokemonBattleFinish(true);
@@ -297,19 +374,22 @@ public class BattleManager : MonoBehaviour
 
     public void OpenPartySelectionScreen()
     {
-        print("abrir la pantalla de seleccion de pokemon");
-        if (Input.GetAxisRaw("Return" ) != 0)
+        battleStates = BattleStates.PartySelectScreen;
+        partyHud.SetPartyPokemon(playerParty.Pokemons);
+        partyHud.gameObject.SetActive(true);
+        currentSelectedPokemon = 0;
+        for (var i = 0; i < playerParty.Pokemons.Count; i++)
         {
-            PlayerAction();
+            if (playerUnit.pokemon == playerParty.Pokemons[i])
+            {
+                currentSelectedPokemon = i;
+            }
         }
+        partyHud.UpdateSelectedPokemon(currentSelectedPokemon);
     }
 
     public void OpenInventoryScreen()
     {
         print("Abrir la pantalla de inventario");
-        if (Input.GetAxisRaw("Return" ) != 0)
-        {
-            PlayerAction();
-        }
     }
 }
