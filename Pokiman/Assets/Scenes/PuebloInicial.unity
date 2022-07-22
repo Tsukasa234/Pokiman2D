@@ -12332,6 +12332,7 @@ MonoBehaviour:
   _base: {fileID: 11400000, guid: cf0cbdedb30f1e24c9befc99abb3d162, type: 2}
   level: 9
   isPlayer: 1
+  hud: {fileID: 2023761936}
   playStartAnimationTime: 1
   playStartAnimationAttack: 0.3
   hitTimeAnimation: 0.15
@@ -17132,6 +17133,7 @@ MonoBehaviour:
   _base: {fileID: 11400000, guid: 441d4c652084cc446a3f731d8b68b11e, type: 2}
   level: 5
   isPlayer: 0
+  hud: {fileID: 1256456897}
   playStartAnimationTime: 1
   playStartAnimationAttack: 0.3
   hitTimeAnimation: 0.15
@@ -18816,7 +18818,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1905704307
 Transform:
   m_ObjectHideFlags: 0
@@ -18847,12 +18849,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerUnit: {fileID: 1177907887}
-  playerHUD: {fileID: 2023761936}
   enemyUnit: {fileID: 1372809204}
-  enemyHUD: {fileID: 1256456897}
   dialog: {fileID: 602393675}
   partyHud: {fileID: 870987072}
   battleStates: 0
+  timeBeetweenClicks: 0.3
 --- !u!1 &1985031709
 GameObject:
   m_ObjectHideFlags: 0

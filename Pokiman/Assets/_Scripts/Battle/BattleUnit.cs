@@ -10,10 +10,12 @@ public class BattleUnit : MonoBehaviour
     public PokemonBase _Base { get => _base; set => _base = value; }
     [SerializeField] private int level;
     public int Level { get => level; set => level = value; }
-    public bool isPlayer;
+    [SerializeField]private bool isPlayer;
+    public bool IsPlayer => isPlayer;
+    [SerializeField] private BattleHUD hud;
+    public BattleHUD HUD => hud;
 
     public Pokemon pokemon { get; set; }
-
     private Image pokemonImage;
 
     private Vector3 initialPosition;
@@ -31,6 +33,7 @@ public class BattleUnit : MonoBehaviour
     /// <summary>
     ///Metodo para configurar al pokemon que estara en la batalla dependiendo de si es enemigo o el player
     ///</summary>
+    /// <param name="pPokemon">Referencia al pokemon enemigo o del player</param>
     public void SetupPokemon(Pokemon pPokemon)
     {
         pokemon = pPokemon;
@@ -38,6 +41,7 @@ public class BattleUnit : MonoBehaviour
         pokemonImage.sprite = (isPlayer ? pokemon.BasePokemon.BackSprite
             : pokemon.BasePokemon.FrontSprite);
         pokemonImage.color = initialColor;
+        hud.SetPokemonData(pPokemon);
         PlayStartAnimation();
     }
 
