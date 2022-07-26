@@ -13,8 +13,11 @@ public class PlayerController : MonoBehaviour
     private Vector2 input;
 
     private Animator anim;
+    
 
     public event Action OnPokemonEncounter;
+    
+    [SerializeField] private float verticalDes = 0.2f;
 
     [SerializeField]
     private LayerMask solidObjectsLayer, pokemonLayer;
@@ -96,7 +99,7 @@ public class PlayerController : MonoBehaviour
 
     private void CheckforPokemon()
     {
-        if (Physics2D.OverlapCircle(transform.position, 0.1f, pokemonLayer) != null)
+        if (Physics2D.OverlapCircle(transform.position - new Vector3(0,verticalDes,0), 0.1f, pokemonLayer) != null)
         {
             if (Random.Range(0, 100) < 15)
             {

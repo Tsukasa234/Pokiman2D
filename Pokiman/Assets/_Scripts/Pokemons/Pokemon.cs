@@ -20,7 +20,15 @@ public class Pokemon
     //Variable para medir los puntos de vida del pokemon actual con su propiedad accesible
     private int _hp;
     public int HP { get => _hp; set => _hp = value; }
-    //Constructor de la clase con los parametos de las estadisticas del pokemon y el nivel
+
+    public Pokemon(PokemonBase pBase, int pLevel)
+    {
+        _base = pBase;
+        level = pLevel;
+        InitPokemon();
+    }
+
+    //Metodo con los parametos de las estadisticas del pokemon y el nivel
     public void InitPokemon()
     {
         //Inicializacion de las variables

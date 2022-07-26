@@ -10,7 +10,7 @@ public class BattleUnit : MonoBehaviour
     public PokemonBase _Base { get => _base; set => _base = value; }
     [SerializeField] private int level;
     public int Level { get => level; set => level = value; }
-    [SerializeField]private bool isPlayer;
+    [SerializeField] private bool isPlayer;
     public bool IsPlayer => isPlayer;
     [SerializeField] private BattleHUD hud;
     public BattleHUD HUD => hud;
@@ -20,8 +20,9 @@ public class BattleUnit : MonoBehaviour
 
     private Vector3 initialPosition;
     private Color initialColor;
-    [SerializeField] private float playStartAnimationTime = 1.0f, playStartAnimationAttack = 0.3f, 
-            hitTimeAnimation = 0.15f, playStartAnimationFaint = 1.0f;
+    [SerializeField]
+    private float playStartAnimationTime = 1.0f, playStartAnimationAttack = 0.3f,
+            hitTimeAnimation = 0.15f, playStartAnimationFaint = 1.0f, playCatchAnimation = 1.0f;
 
     private void Awake()
     {
@@ -41,6 +42,9 @@ public class BattleUnit : MonoBehaviour
         pokemonImage.sprite = (isPlayer ? pokemon.BasePokemon.BackSprite
             : pokemon.BasePokemon.FrontSprite);
         pokemonImage.color = initialColor;
+
+        transform.localScale = new Vector3(1,1,1);
+
         hud.SetPokemonData(pPokemon);
         PlayStartAnimation();
     }
@@ -75,5 +79,22 @@ public class BattleUnit : MonoBehaviour
         var seq = DOTween.Sequence();
         seq.Append(pokemonImage.transform.DOLocalMoveY(initialPosition.y - 200, playStartAnimationFaint));
         seq.Join(pokemonImage.DOFade(0, playStartAnimationFaint));
+    }
+
+    public IEnumerator PlayCatchPokemonAnimation()
+    {
+        var seq = DOTween.Sequence();
+        seq.Append(pokemonImage.DOFade(0, playCatchAnimation));
+        seq.Join(pokemonImage.transform.DOScale(new Vector3(0.25f, 0.25f, 1), playCatchAnimation));
+        seq.Join(pokemonImage.transform.DOLocalMoveY(initialPosition.y + 50f, playCatchAnimation));
+        yield return seq.WaitForCompletion();
+    }
+    public IEnumerator PlayFailCatchPokemonAnimation()
+    {
+        var seq = DOTween.Sequence();
+        seq.Append(pokemonImage.DOFade(1, playCatchAnimation));
+        seq.Join(pokemonImage.transform.DOScale(new Vector3(1, 1, 1), playCatchAnimation));
+        seq.Join(pokemonImage.transform.DOLocalMoveY(initialPosition.y, playCatchAnimation));
+        yield return seq.WaitForCompletion();
     }
 }

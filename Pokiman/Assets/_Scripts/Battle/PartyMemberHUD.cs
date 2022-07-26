@@ -22,6 +22,7 @@ public class PartyMemberHUD : MonoBehaviour
         hpText.text = $"{_pokemon.HP}/{_pokemon.MaxHP}";
         _hpBar.SetHealthBar((float)_pokemon.HP / _pokemon.MaxHP);
         pokemonImage.sprite = _pokemon.BasePokemon.FrontSprite;
+        GetComponent<Image>().color = TypeColor.GetColorOftype(pokemon.BasePokemon.Type1);
     }
 
     public void SetSelectedPokemon(bool selected)

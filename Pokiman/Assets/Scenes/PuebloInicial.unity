@@ -590,6 +590,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
+  verticalDes: 0.2
   solidObjectsLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -12337,6 +12338,7 @@ MonoBehaviour:
   playStartAnimationAttack: 0.3
   hitTimeAnimation: 0.15
   playStartAnimationFaint: 1
+  playCatchAnimation: 1
 --- !u!1001 &1193910177
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17138,6 +17140,7 @@ MonoBehaviour:
   playStartAnimationAttack: 0.3
   hitTimeAnimation: 0.15
   playStartAnimationFaint: 1
+  playCatchAnimation: 1
 --- !u!114 &1372809205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17582,7 +17585,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: -929587587
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!1 &1553970725
@@ -18852,8 +18855,10 @@ MonoBehaviour:
   enemyUnit: {fileID: 1372809204}
   dialog: {fileID: 602393675}
   partyHud: {fileID: 870987072}
+  pokeball: {fileID: 8635285869728834435, guid: 7e269eaa9f39ca44d8f14afcc784601f, type: 3}
   battleStates: 0
-  timeBeetweenClicks: 0.3
+  battleType: 0
+  timeBeetweenClicks: 0.5
 --- !u!1 &1985031709
 GameObject:
   m_ObjectHideFlags: 0

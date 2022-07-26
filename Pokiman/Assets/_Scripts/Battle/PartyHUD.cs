@@ -11,7 +11,7 @@ public class PartyHUD : MonoBehaviour
     [SerializeField] List<Pokemon> pokemons;
     public void InitPartyHUD()
     {
-        memberHud = GetComponentsInChildren<PartyMemberHUD>();
+        memberHud = GetComponentsInChildren<PartyMemberHUD>(true);
     }
 
     public void SetPartyPokemon(List<Pokemon> pokemons)

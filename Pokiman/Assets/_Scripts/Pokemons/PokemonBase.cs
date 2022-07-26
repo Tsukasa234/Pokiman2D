@@ -13,7 +13,7 @@ public class PokemonBase : ScriptableObject
 
 
     [TextArea][SerializeField] private string description;
-    public string Description => description; 
+    public string Description => description;
 
     [SerializeField] private Sprite frontsprite;
     public Sprite FrontSprite => frontsprite;
@@ -38,6 +38,9 @@ public class PokemonBase : ScriptableObject
     public int SpAttack => spAttack;
     [SerializeField] private int spDefense;
     public int SpDefense => spDefense;
+
+    [SerializeField] private int catchRate;
+    public int CatchRate => catchRate;
 
     //Instanciacion de una lista con una clase que verificara los movimientos aprendidos y los guardara
     [SerializeField] private List<LearnableMove> learnableMove;
@@ -124,6 +127,8 @@ public class TypeMatrix
         /*FAI*/ new float[] {1f, 0.5f, 1f, 1f, 1f, 1f, 2f, 0.5f, 1f, 1f, 1f, 1f, 1f, 1f, 2f, 2f, 0.5f, 1f}
     };
 
+
+
     public static float GetMupltiplierEfectiveness(PokemonType attackType, PokemonType pokemonDefenderType)
     {
         if (attackType == PokemonType.None || pokemonDefenderType == PokemonType.None)
@@ -134,6 +139,36 @@ public class TypeMatrix
         int row = (int)attackType;
         int col = (int)pokemonDefenderType;
 
-        return matrix[row - 1][col -1];
+        return matrix[row - 1][col - 1];
+    }
+}
+
+public class TypeColor
+{
+    private static Color[] typeColor = {
+            Color.white, //None
+            new Color(0.6588235f, 0.6588235f, 0.4705883f, 1),//Normal 
+            new Color(0.9411765f, 0.5019608f, 0.1882353f, 1),//Fire
+            new Color(0.4078432f, 0.5647059f, 0.9411765f, 1),//Water
+            new Color(0.9686275f, 0.8117648f, 0.1882353f, 1),//Electric
+            new Color(0.4705883f, 0.7843138f, 0.3137255f, 1), //Grass
+            new Color(0.5960785f, 0.8470589f, 0.8470589f, 1), //Ice
+            new Color(0.7529413f, 0.1882353f, 0.1568628f, 1), //Fight
+            new Color(0.627451f, 0.2509804f, 0.627451f, 1),   //Poison
+            new Color(0.8784314f, 0.7529413f, 0.4078432f, 1), //Ground
+            new Color(0.6588235f, 0.5647059f, 0.9411765f, 1), //Fly
+            new Color(0.8117648f, 0.3058824f, 0.4588236f, 1), //Physic
+            new Color(0.6588235f, 0.7215686f, 0.1254902f, 1), //Bug
+            new Color(0.7215686f, 0.627451f, 0.2196079f, 1),  //Rock
+            new Color(0.4392157f, 0.345098f, 0.5960785f, 1),   //Ghost
+            new Color(0.4392157f, 0.2196079f, 0.9725491f, 1), //Dragon
+            new Color(0.4392157f, 0.345098f, 0.282353f, 1),   //Dark
+            new Color(0.7215686f, 0.7215686f, 0.8156863f, 1), //Steel
+            new Color(0.9333334f, 0.6f, 0.6745098f, 1)        //Fairy
+        };
+
+    public static Color GetColorOftype(PokemonType type)
+    {
+        return typeColor[(int)type];
     }
 }
