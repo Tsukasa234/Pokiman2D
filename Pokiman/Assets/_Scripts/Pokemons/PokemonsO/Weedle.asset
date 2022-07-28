@@ -21,11 +21,13 @@ MonoBehaviour:
   type1: 12
   type2: 8
   maxHP: 40
+  xpBase: 52
   attack: 35
   defense: 30
   speed: 50
   spAttack: 20
   spDefense: 20
+  growRate: 2
   catchRate: 255
   learnableMove:
   - move: {fileID: 11400000, guid: 47edc48f1585940468eb21f92611e0e8, type: 2}

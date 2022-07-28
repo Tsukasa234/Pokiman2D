@@ -355,10 +355,7 @@ public class BattleManager : MonoBehaviour
 
         if (damageDesc.Fainted)
         {
-            yield return dialog.SetDialog($"{target.pokemon.BasePokemon.Namae} se ha debilitado");
-            target.PlayFaintAnimation();
-            yield return new WaitForSeconds(1.5f);
-            CheckForBattleFinish(target);
+            yield return HandlePokemonFainted(target);
         }
     }
 
@@ -535,5 +532,34 @@ public class BattleManager : MonoBehaviour
                 battleStates = BattleStates.LoseTurn;
             }
         }
+    }
+
+    IEnumerator HandlePokemonFainted(BattleUnit faintedUnit)
+    {
+        yield return dialog.SetDialog($"{faintedUnit.pokemon.BasePokemon.Namae} se ha debilitado");
+        faintedUnit.PlayFaintAnimation();
+        yield return new WaitForSeconds(1.5f);
+
+        if (!faintedUnit.IsPlayer)
+        {
+            int baseExp = faintedUnit.pokemon.BasePokemon.XpBase;
+            int level = faintedUnit.pokemon.Level;
+            float multiplier = (battleType ==BattleType.WildPokemon? 1f : 1.5f);
+            int expGain = Mathf.FloorToInt(baseExp * level * multiplier/7);
+            playerUnit.pokemon.Experience += expGain;
+            yield return dialog.SetDialog($"{playerUnit.pokemon.BasePokemon.Namae} ha ganado {expGain} puntos de exp");
+            yield return playerUnit.HUD.SetSmoothExp();
+            yield return new WaitForSeconds(1f);
+
+            while (playerUnit.pokemon.NeedsToLevelUp())
+            {
+                playerUnit.HUD.SetLevelText();
+                yield return playerUnit.HUD.UpdatePokemonData(playerUnit.pokemon.HP);
+                yield return dialog.SetDialog($"¡¡{playerUnit.pokemon.BasePokemon.Namae} ha subido de nivel!!");
+                yield return playerUnit.HUD.SetSmoothExp(true);
+            }
+        }
+
+        CheckForBattleFinish(faintedUnit);
     }
 }

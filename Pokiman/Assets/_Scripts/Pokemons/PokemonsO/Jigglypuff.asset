@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13efefea81bbcc1439d5f0ad9649343a, type: 3}
+  m_Name: Jigglypuff
+  m_EditorClassIdentifier: 
+  ID: 39
+  namae: Jigglypuff
+  description: Cuando mueve sus grandes ojos redondos, comienza a cantar una nana
+    que duerme al enemigo.
+  frontsprite: {fileID: 21300000, guid: 971660395e8680b4eb660a42e88837b0, type: 3}
+  backsprite: {fileID: 21300000, guid: 834c4a4e82dc32f4cbd500af101d0075, type: 3}
+  type1: 1
+  type2: 18
+  maxHP: 115
+  xpBase: 95
+  attack: 45
+  defense: 20
+  speed: 20
+  spAttack: 45
+  spDefense: 25
+  growRate: 1
+  catchRate: 170
+  learnableMove:
+  - move: {fileID: 11400000, guid: 42141c96857729e43b5be586dcb6ec5c, type: 2}
+    level: 1
+  - move: {fileID: 11400000, guid: 47edc48f1585940468eb21f92611e0e8, type: 2}
+    level: 2
+  - move: {fileID: 11400000, guid: 609647b7de418024daa3e8245b45ac6d, type: 2}
+    level: 4
+  - move: {fileID: 11400000, guid: 609647b7de418024daa3e8245b45ac6d, type: 2}
+    level: 4
+  - move: {fileID: 11400000, guid: 1f7085f484dfe3e45a1fc4a533976dc1, type: 2}
+    level: 5
+  - move: {fileID: 11400000, guid: 843abd33f98f08a49a6cd353fa419d3f, type: 2}
+    level: 8

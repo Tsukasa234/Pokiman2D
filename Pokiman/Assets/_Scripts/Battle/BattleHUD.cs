@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 public class BattleHUD : MonoBehaviour
 {
@@ -12,7 +13,8 @@ public class BattleHUD : MonoBehaviour
     //Creamos una referencia a la barra de vida de la UI
     [SerializeField] private HealthBar healthBar;
     //Creamos una referencia al texto de Vida paa mostrar la vida actual y la vida maxima
-    [SerializeField] private Text HealthText;
+    [SerializeField] private Text healtBarText;
+    [SerializeField] private GameObject expBar;
 
     private Pokemon _pokemon;
 
@@ -22,10 +24,11 @@ public class BattleHUD : MonoBehaviour
     {
         _pokemon = pPokemon;
         pokemonName.text = pPokemon.BasePokemon.Namae;
-        pokemonLevel.text = $"Lv.{pPokemon.Level}";
+        SetLevelText();
         // healthBar.SetHealthBar(pPokemon.HP / pPokemon.MaxHP);
-        // HealthText.text = $"{pPokemon.HP}/{pPokemon.MaxHP}";
+        // healtBarText.text = $"{pPokemon.HP}/{pPokemon.MaxHP}";
         healthBar.SetHealthBar((float)_pokemon.HP / _pokemon.MaxHP);
+        SetExp();
         StartCoroutine(UpdatePokemonData(_pokemon.HP));
     }
 
@@ -41,11 +44,50 @@ public class BattleHUD : MonoBehaviour
         while (oldHPVal > _pokemon.HP)
         {
             oldHPVal--;
-            HealthText.text = $"{oldHPVal}/{_pokemon.MaxHP}";
+            healtBarText.text = $"{oldHPVal}/{_pokemon.MaxHP}";
             yield return new WaitForSeconds(0.3f);
         }
-        HealthText.text = $"{_pokemon.HP}/{_pokemon.MaxHP}";
+        healtBarText.text = $"{_pokemon.HP}/{_pokemon.MaxHP}";
     }
 
+    public void SetExp()
+    {
+        if (expBar == null)
+        {
+            return;
+        }
+
+        expBar.transform.localScale = new Vector3(NormalizedExp(), 1, 1);
+    }
+
+    public IEnumerator SetSmoothExp(bool resetBarExp = false)
+    {
+        if (expBar == null)
+        {
+            yield break;
+        }
+
+        if (resetBarExp)
+        {
+            expBar.transform.localScale = new Vector3(0, 1, 1);
+        }
+
+        yield return expBar.transform.DOScaleX(NormalizedExp(), 1.5f).WaitForCompletion();
+    }
+
+    float NormalizedExp()
+    {
+        float currentLevelExp = _pokemon.BasePokemon.ExpNecessaryForLevelUp(_pokemon.Level);
+        float nextLevelExp = _pokemon.BasePokemon.ExpNecessaryForLevelUp(_pokemon.Level + 1);
+        float normalizedExp = (_pokemon.Experience - currentLevelExp) / (nextLevelExp - currentLevelExp);
+        return Mathf.Clamp01(normalizedExp);
+    }
+
+    public void SetLevelText()
+    {
+        pokemonLevel.text = $"Lv. {_pokemon.Level}";
+    }
+
+    
 
 }

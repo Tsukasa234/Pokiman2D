@@ -10,6 +10,7 @@ public class PartyMemberHUD : MonoBehaviour
     [SerializeField] private HealthBar _hpBar;
     [SerializeField] private Image pokemonImage, bgImage;
     [SerializeField] private Color selectedColor = Color.blue;
+    [SerializeField] private GameObject expBar;
 
     private Pokemon _pokemon;
 

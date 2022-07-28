@@ -21,6 +21,9 @@ public class Pokemon
     private int _hp;
     public int HP { get => _hp; set => _hp = value; }
 
+    private int experience;
+    public int Experience { get => experience; set => experience = value; }
+
     public Pokemon(PokemonBase pBase, int pLevel)
     {
         _base = pBase;
@@ -33,6 +36,7 @@ public class Pokemon
     {
         //Inicializacion de las variables
         _hp = MaxHP;
+        experience = BasePokemon.ExpNecessaryForLevelUp(level);
         //incializacion de la lista de movimientos
         moves = new List<Move>();
         //Ciclo para recorrer los movimientos que el pokemon puede aprender
@@ -71,14 +75,15 @@ public class Pokemon
         float type1 = TypeMatrix.GetMupltiplierEfectiveness(move.Base.TipoAtaque, this.BasePokemon.Type1);
         float type2 = TypeMatrix.GetMupltiplierEfectiveness(move.Base.TipoAtaque, this.BasePokemon.Type2);
 
-        var damageDesc = new DamageDescription(){
+        var damageDesc = new DamageDescription()
+        {
             Critical = critical,
             Type = type1 * type2,
             Fainted = false
         };
 
-        float attack = (move.Base.IsSpecialMove? attacker.SpAttack : attacker.Attack);
-        float defense = (move.Base.IsSpecialMove? this.SpDefense : this.Defense);
+        float attack = (move.Base.IsSpecialMove ? attacker.SpAttack : attacker.Attack);
+        float defense = (move.Base.IsSpecialMove ? this.SpDefense : this.Defense);
 
         float modifiers = Random.Range(0.85f, 1.00f) * type1 * type2 * critical;
         float baseDamage = ((2 * attacker.Level / 5f + 2) * move.Base.Power * ((float)attack / defense)) / 50f + 2;
@@ -105,15 +110,25 @@ public class Pokemon
         }
         return null;
     }
+
+    public bool NeedsToLevelUp()
+    {
+        if (experience > BasePokemon.ExpNecessaryForLevelUp(level+1))
+        {
+            level++;
+            return true;
+        }
+        return false;
+    }
 }
 
 public class DamageDescription
 {
-    public float Critical {get; set;}
+    public float Critical { get; set; }
 
-    public float Type {get; set;}
+    public float Type { get; set; }
 
-    public bool Fainted {get; set;}
+    public bool Fainted { get; set; }
 
 
 }
