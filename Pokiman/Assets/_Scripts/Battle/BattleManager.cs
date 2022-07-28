@@ -544,8 +544,8 @@ public class BattleManager : MonoBehaviour
         {
             int baseExp = faintedUnit.pokemon.BasePokemon.XpBase;
             int level = faintedUnit.pokemon.Level;
-            float multiplier = (battleType ==BattleType.WildPokemon? 1f : 1.5f);
-            int expGain = Mathf.FloorToInt(baseExp * level * multiplier/7);
+            float multiplier = (battleType == BattleType.WildPokemon ? 1f : 1.5f);
+            int expGain = Mathf.FloorToInt(baseExp * level * multiplier / 7);
             playerUnit.pokemon.Experience += expGain;
             yield return dialog.SetDialog($"{playerUnit.pokemon.BasePokemon.Namae} ha ganado {expGain} puntos de exp");
             yield return playerUnit.HUD.SetSmoothExp();
@@ -556,6 +556,20 @@ public class BattleManager : MonoBehaviour
                 playerUnit.HUD.SetLevelText();
                 yield return playerUnit.HUD.UpdatePokemonData(playerUnit.pokemon.HP);
                 yield return dialog.SetDialog($"¡¡{playerUnit.pokemon.BasePokemon.Namae} ha subido de nivel!!");
+                var newLearnableMove = playerUnit.pokemon.GetLearnableMoveAtCurrentLevel();
+
+                if (newLearnableMove != null)
+                {
+                    if (playerUnit.pokemon.Moves.Count < 4)
+                    {
+                        //Aprender Movimiento
+                    }
+                    else
+                    {
+                        //reemplazar algun movimiento
+                    }
+                }
+
                 yield return playerUnit.HUD.SetSmoothExp(true);
             }
         }

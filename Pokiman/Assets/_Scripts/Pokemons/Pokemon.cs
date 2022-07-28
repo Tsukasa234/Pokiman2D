@@ -19,7 +19,15 @@ public class Pokemon
     public List<Move> Moves { get => moves; set => moves = value; }
     //Variable para medir los puntos de vida del pokemon actual con su propiedad accesible
     private int _hp;
-    public int HP { get => _hp; set => _hp = value; }
+    public int HP
+    {
+        get => _hp;
+        set
+        {
+            _hp = value;
+            _hp = Mathf.FloorToInt(Mathf.Clamp(_hp, 0, MaxHP));
+        }
+    }
 
     private int experience;
     public int Experience { get => experience; set => experience = value; }
@@ -113,12 +121,19 @@ public class Pokemon
 
     public bool NeedsToLevelUp()
     {
-        if (experience > BasePokemon.ExpNecessaryForLevelUp(level+1))
+        if (experience > BasePokemon.ExpNecessaryForLevelUp(level + 1))
         {
+            int currentMaxHP = MaxHP;
             level++;
+            HP = MaxHP + currentMaxHP;
             return true;
         }
         return false;
+    }
+
+    public LearnableMove GetLearnableMoveAtCurrentLevel()
+    {
+        return BasePokemon.LearnableMoves.Where(ln => ln.Level == level).FirstOrDefault();
     }
 }
 
