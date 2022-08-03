@@ -52,6 +52,8 @@ public class PokemonBase : ScriptableObject
     [SerializeField] private List<LearnableMove> learnableMove;
     public List<LearnableMove> LearnableMoves => learnableMove;
 
+    public static int CANT_OF_LEARNABLE_MOVES {get;} = 4;
+
     public int ExpNecessaryForLevelUp(int level)
     {
         switch (growRate)

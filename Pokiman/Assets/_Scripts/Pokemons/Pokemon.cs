@@ -58,7 +58,7 @@ public class Pokemon
                 moves.Add(new Move(lMove.Move));
             }
             //Verificamos que la cantidad de movimientos aprendidos no sea mayor a 4
-            if (moves.Count >= 4)
+            if (moves.Count >= PokemonBase.CANT_OF_LEARNABLE_MOVES)
             {
                 break;
             }
@@ -134,6 +134,15 @@ public class Pokemon
     public LearnableMove GetLearnableMoveAtCurrentLevel()
     {
         return BasePokemon.LearnableMoves.Where(ln => ln.Level == level).FirstOrDefault();
+    }
+
+    public void LearnMove(LearnableMove learnableMove)
+    {
+        if (Moves.Count >= PokemonBase.CANT_OF_LEARNABLE_MOVES)
+        {
+            return;
+        }
+        Moves.Add(new Move(learnableMove.Move));
     }
 }
 
